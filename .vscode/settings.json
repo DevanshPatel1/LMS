@@ -1,0 +1,87 @@
+// {
+//   "typescript.tsdk": "./node_modules/typescript/lib",
+//   "editor.formatOnSave": true,
+//   "editor.codeActionsOnSave": {
+//     "source.fixAll.eslint": "explicit",
+//     "source.fixAll.stylelint": "explicit"
+//   },
+//   "[markdown]": {
+//     "editor.formatOnSave": false
+//   },
+//   "[javascript]": {
+//     "editor.formatOnSave": false
+//   },
+//   "[json]": {
+//     "editor.formatOnSave": false
+//   },
+//   "[jsonc]": {
+//     "editor.formatOnSave": false
+//   },
+//   "files.watcherExclude": {
+//     "**/.git/*/**": true,
+//     "**/node_modules/*/**": true,
+//     "**/dist/*/**": true,
+//     "**/coverage/*/**": true
+//   },
+//   "files.associations": {
+//     "*.json": "jsonc",
+//     ".prettierrc": "jsonc"
+//   },
+//   "typescript.referencesCodeLens.enabled": true
+// }
+
+
+{
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false
+  },
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[json]": {
+    "editor.formatOnSave": false
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "files.watcherExclude": {
+    "**/.git/*/**": true,
+    "**/node_modules/*/**": true,
+    "**/dist/*/**": true,
+    "**/coverage/*/**": true
+  },
+  "files.associations": {
+    "*.json": "jsonc",
+    ".prettierrc": "jsonc"
+  },
+  
+  "typescript.referencesCodeLens.enabled": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.arrowParens": "always",
+  "editor.linkedEditing": true
+}

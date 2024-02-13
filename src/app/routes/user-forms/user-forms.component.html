@@ -1,0 +1,49 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <!-- <form nz-form [formGroup]="validateForm"> -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Name</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input nz-input formControlName="name" placeholder="Username" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Email</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input nz-input formControlName="email" placeholder="Email" type="email" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>IsVerified</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <nz-switch [(ngModel)]="switchValue1" formControlName="isVerified"></nz-switch>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Status</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <nz-switch [(ngModel)]="switchValue2" formControlName="status"></nz-switch>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Role</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <a nz-dropdown [nzDropdownMenu]="menu">
+        Select Role
+        <span nz-icon nzType="down"></span>
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item nzSelected>User</li>
+          <li nz-menu-item>Customer</li>
+          <li nz-menu-item>Employee</li>
+          <li nz-menu-item>Admin</li>
+        </ul>
+      </nz-dropdown-menu>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- <nz-form-item>
+    <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 16, offset: 8 }">
+      <button nz-button nzType="primary">Submit</button>
+    </nz-form-control>
+  </nz-form-item> -->
+</form>

@@ -1,0 +1,66 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <!-- <form nz-form [formGroup]="validateForm"> -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Name</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input nz-input formControlName="name" placeholder="Username" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Address</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <textarea
+        nz-input
+        [(ngModel)]="address"
+        [nzAutosize]="true"
+        formControlName="address"
+        placeholder="Address"
+        type="address"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>City</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input placeholder="Select City" nz-input [(ngModel)]="city_select" [nzAutocomplete]="auto"/>
+      <nz-autocomplete #auto [compareWith]="compareFun">
+        @for (city of cities; track $index) {
+          <nz-auto-option [nzValue]="city" [nzLabel]="city.label">
+            {{ city.label }}
+          </nz-auto-option>
+        }
+      </nz-autocomplete>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>State</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input placeholder="Select State" nz-input [(ngModel)]="state_select" [nzAutocomplete]="auto2" />
+      <nz-autocomplete #auto2 [compareWith]="compareFun">
+        @for (state of states; track $index) {
+          <nz-auto-option [nzValue]="state" [nzLabel]="state.label">
+            {{ state.label }}
+          </nz-auto-option>
+        }
+      </nz-autocomplete>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Country</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <input placeholder="Select Country" nz-input [(ngModel)]="country_select" [nzAutocomplete]="auto3" />
+      <nz-autocomplete #auto3 [compareWith]="compareFun">
+        @for (country of countries; track $index) {
+          <nz-auto-option [nzValue]="country" [nzLabel]="country.label">
+            {{ country.label }}
+          </nz-auto-option>
+        }
+      </nz-autocomplete>
+    </nz-form-control>
+  </nz-form-item>
+  <!-- <nz-form-item>
+      <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 16, offset: 8 }">
+        <button nz-button nzType="primary">Submit</button>
+      </nz-form-control>
+    </nz-form-item> -->
+</form>
