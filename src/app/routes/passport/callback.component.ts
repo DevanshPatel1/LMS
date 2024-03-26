@@ -20,7 +20,7 @@ export class CallbackComponent implements OnInit {
   private mockModel(): void {
     const info = {
       token: '123456789',
-      name: 'Admin',
+      name: 'cipchk',
       email: `${this.type}@${this.type}.com`,
       id: 10000,
       time: +new Date()

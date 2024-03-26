@@ -1,0 +1,89 @@
+<div class="container">
+  <div style="display: flex; margin-top: 7%; justify-content: center">
+    <nz-card style="width: auto; height: auto; background: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)">
+      <div>
+        <button nz-button (click)="OnClickGoBack()">Back</button>
+      </div>
+      <div class="row" style="margin-top: 5%">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input type="text" size="600px" style="transition: transform 0.2s" nz-input placeholder="input search text" />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <button nz-button nzType="default"><i nz-icon nzType="search" nzTheme="outline"></i></button>
+          <!-- <span nz-icon nzType="search"></span> -->
+        </ng-template>
+        <br />
+        <br />
+      </div>
+      <div class="row" style="display: inline-flex">
+        <div class="col-4">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a status" style="width: 180px" [(ngModel)]="selectedValue">
+            <nz-option nzCustomContent nzLabel="Activated" nzValue="Activated">
+              <span nz-icon nzType="check-circle" style="color: green"></span>
+              Activated
+            </nz-option>
+            <nz-option nzCustomContent nzLabel="Not Activated" nzValue="Not Activated">
+              <span nz-icon nzType="close-circle" style="color: red"></span>
+              Not Activated
+            </nz-option>
+          </nz-select>
+        </div>
+        <div class="col-6" style="margin-left: 20px">
+          <div class="example-input">
+            <input
+              placeholder="Product Name"
+              nz-input
+              [(ngModel)]="inputValue"
+              (ngModelChange)="onChange($event)"
+              [nzAutocomplete]="auto"
+            />
+            <nz-autocomplete [nzDataSource]="filteredOptions" #auto></nz-autocomplete>
+          </div>
+        </div>
+        <div class="col-8" style="margin-left: 20px">
+          <button nz-button nzType="default" nzShape="circle"><span nz-icon nzType="filter" nzTheme="fill"></span></button>
+        </div>
+      </div>
+      <div style="padding: 30px; margin-top: 25px">
+        <nz-table #nzTable [nzData]="listOfData" nzTableLayout="fixed">
+          <thead>
+            <tr>
+              <th>Serial Number</th>
+              <th>Product Name</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (data of nzTable.data; track data) {
+              <ng-container>
+                <tr>
+                  <td
+                    ><strong>{{ data.serialNumber }}</strong> <br />
+                    <span>Tags: {{ data.tags }}</span></td
+                  >
+                  <td
+                    ><strong>{{ data.productName }}</strong
+                    ><br />
+                    <span>Customer Name: {{ data.customerName }}</span></td
+                  >
+                  <td>
+                    @if (data.status === 'active') {
+                      <span nz-icon nzType="check-circle" style="color: green"></span>
+                    } @else {
+                      <span nz-icon nzType="close-circle" style="color: red"></span>
+                    }
+                    {{ data.status }}
+                  </td>
+                  <td style="justify-content: center">
+                    <a (click)="OnClickEdit(data.id)">Edit</a>
+                  </td>
+                </tr>
+              </ng-container>
+            }
+          </tbody>
+        </nz-table>
+      </div>
+    </nz-card>
+  </div>
+</div>

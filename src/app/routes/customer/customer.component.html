@@ -1,39 +1,49 @@
-<page-header />
-
-<div style="display: flex; justify-content: flex-end; padding-right: 25px; margin-bottom: 20px">
-  <nz-button-group>
-    <button nz-button style="margin-right: 10px" (click)="OnClickAddCustomer()">Add Customer</button>
-    <button nz-button (click)="OnClickGoBack()">Back</button>
-  </nz-button-group>
-</div>
-<nz-card [nzBordered]="false">
-  <nz-table #rowSelectionTable nzShowSizeChanger ngSkipHydration [nzData]="listOfData">
-    <!-- (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" -->
-    <thead>
-      <tr>
-        <th nzAlign="center">ID</th>
-        <th nzAlign="center">Name</th>
-        <th nzAlign="center">Address</th>
-        <th nzAlign="center">City</th>
-        <th nzAlign="center">State</th>
-        <th nzAlign="center">Country</th>
-        <th nzAlign="center">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of rowSelectionTable.data">
-        <td nzAlign="center">{{ data.id }}</td>
-        <td nzAlign="center">{{ data.name }}</td>
-        <td nzAlign="center">{{ data.address }}</td>
-        <td nzAlign="center">{{ data.city }}</td>
-        <td nzAlign="center">{{ data.state }}</td>
-        <td nzAlign="center">{{ data.country }}</td>
-        <td nzAlign="center">
-          <a (click)="OnClickEditCustomer()">Edit</a>
-          <nz-divider nzType="vertical"></nz-divider>
-          <a (click)="OnClickRemoveCustomer()">Remove</a>
-        </td>
-      </tr>
-    </tbody>
-  </nz-table>
+<nz-card style="height: auto">
+  <div style="display: flex; justify-content: flex-end; padding-right: 25px; margin-bottom: 20px">
+    <nz-button-group>
+      <button nz-button style="margin-right: 10px" (click)="OnClickAddCustomer()">Add Customer</button>
+      <button nz-button (click)="OnClickGoBack()">Back</button>
+    </nz-button-group>
+  </div>
+  <nz-card [nzBordered]="false" style="height: auto">
+    <nz-table
+      #rowSelectionTable
+      nzShowSizeChanger
+      ngSkipHydration
+      [nzData]="customers"
+    >
+      <thead>
+        <tr>
+          <th nzAlign="center">ID</th>
+          <th nzAlign="center">Name</th>
+          <th nzAlign="center">Address</th>
+          <th nzAlign="center">City</th>
+          <th nzAlign="center">State</th>
+          <th nzAlign="center">Country</th>
+          <th nzAlign="center">CreatedBy</th>
+          <!-- <th nzAlign="center">CreatedAt</th>
+          <th nzAlign="center">UpdatedAt</th> -->
+          <th nzAlign="center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data; let i = index">
+          <td nzAlign="center">{{ i + 1 }}</td>
+          <td nzAlign="center">{{ data.name }}</td>
+          <td nzAlign="center">{{ data.address }}</td>
+          <td nzAlign="center">{{ data.city }}</td>
+          <td nzAlign="center">{{ data.state }}</td>
+          <td nzAlign="center">{{ data.country }}</td>
+          <td nzAlign="center">{{ data.createdBy }}</td>
+          <!-- <td nzAlign="center">{{ data.createdAt }}</td>
+          <td nzAlign="center">{{ data.updatedAt }}</td> -->
+          <td nzAlign="center">
+            <a (click)="OnClickEditCustomer(data.id)">Edit</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a (click)="OnClickRemoveCustomer(data.id)">Remove</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-card>
 </nz-card>

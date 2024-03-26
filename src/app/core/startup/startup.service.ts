@@ -3,9 +3,9 @@ import { APP_INITIALIZER, Injectable, Provider, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ACLService } from '@delon/acl';
 import { DA_SERVICE_TOKEN } from '@delon/auth';
-import { ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService } from '@delon/theme';
+import { MenuService, SettingsService, TitleService } from '@delon/theme';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { Observable, zip, of, catchError, map } from 'rxjs';
+import { Observable, of, catchError, map } from 'rxjs';
 
 /**
  * Used for application startup
@@ -93,16 +93,51 @@ export class StartupService {
             link: '/dashboard',
             icon: { type: 'icon', value: 'appstore' }
           },
-          // {
-          //   text: 'User',
-          //   link: '/user',
-          //   icon: { type: 'icon', value: 'app.user' }
-          // },
-          // {
-          //   text: 'Customer',
-          //   link: '/customer',
-          //   icon: { type: 'icon', value: 'app.customer' }
-          // }
+          {
+            text: 'Licenses',
+            children: [
+              {
+                text: 'Generate Serial',
+                link: '/generateSerial',
+                icon: { type: 'icon', value: '' }
+              },
+              {
+                text: 'Register Serial',
+                link: '/registerSerial',
+                icon: { type: 'icon', value: '' }
+              },
+              {
+                text: 'Activation',
+                link: '/activation',
+                icon: { type: 'icon', value: '' }
+              },
+              {
+                text: 'Evaluation',
+                link: '/evaluation',
+                icon: { type: 'icon', value: '' }
+              }
+            ]
+          },
+          {
+            text: 'Prospects',
+            link: '/prospects',
+            icon: { type: 'icon', value: '' }
+          },
+          {
+            text: 'User',
+            link: '/user',
+            icon: { type: 'icon', value: '' }
+          },
+          {
+            text: 'Customer',
+            link: '/customer',
+            icon: { type: 'icon', value: '' }
+          },
+          {
+            text: 'Employee',
+            link: '/employee',
+            icon: { type: 'icon', value: '' }
+          }
         ]
       }
     ]);

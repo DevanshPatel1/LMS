@@ -1,0 +1,96 @@
+<form nz-form [formGroup]="form" (ngSubmit)="submit()" role="form">
+  <nz-tabset [nzAnimated]="false" class="tabs">
+    <nz-tab [nzTitle]="'Credentials'">
+      @if (error) {
+        <nz-alert [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg" />
+      }
+      <nz-form-item>
+        <nz-form-label>Name:</nz-form-label>
+        <nz-form-control nzErrorTip="Please enter name">
+          <nz-input-group nzSize="large">
+            <input nz-input formControlName="name" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Email:</nz-form-label>
+        <nz-form-control nzErrorTip="Please enter email">
+          <nz-input-group nzSize="large">
+            <input nz-input type="email" formControlName="email" placeholder="abc@gmail.com" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Password:</nz-form-label>
+        <nz-form-control nzErrorTip="Please enter password">
+          <nz-input-group nzSize="large">
+            <input nz-input type="password" formControlName="password" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Confirm Password:</nz-form-label>
+        <nz-form-control nzErrorTip="Please enter confirm password">
+          <nz-input-group nzSize="large">
+            <input nz-input type="confirmPwd" formControlName="confirmPwd" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Status:</nz-form-label>
+        <nz-form-control>
+          <nz-input-group nzSize="large">
+            <input nz-input type="checkbox" formControlName="status" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Country Code::</nz-form-label>
+        <nz-form-control nzErrorTip="Please enter country code">
+          <nz-input-group nzSize="large">
+            <input nz-input type="countryCode" formControlName="countryCode" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Gender:</nz-form-label>
+        <nz-form-control nzErrorTip="Please select gender">
+          <nz-input-group nzSize="large">
+            <nz-radio-group formControlName="gender">
+              <label nz-radio nzValue="male">Male</label>
+              <label nz-radio nzValue="female">Female</label>
+            </nz-radio-group>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Active:</nz-form-label>
+        <nz-form-control>
+          <nz-input-group nzSize="large">
+            <input nz-input type="checkbox" formControlName="active" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>IsVerified:</nz-form-label>
+      <nz-form-control>
+        <nz-input-group nzSize="large">
+          <input nz-input type="checkbox" formControlName="isVerified" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    </nz-tab>
+  </nz-tabset>
+  <nz-form-item>
+    <nz-col [nzSpan]="12">
+      <label nz-checkbox formControlName="remember">Remember me</label>
+    </nz-col>
+  </nz-form-item>
+  <nz-form-item>
+    <button nz-button type="submit" nzType="primary" nzSize="large" nzBlock> Register </button>
+  </nz-form-item>
+</form>
+<div class="other">
+  Already have an account?
+  <a class="login" routerLink="/passport/login">Login</a>
+</div>

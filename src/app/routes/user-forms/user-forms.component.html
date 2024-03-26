@@ -1,49 +1,85 @@
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-  <!-- <form nz-form [formGroup]="validateForm"> -->
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired>Name</nz-form-label>
-    <nz-form-control [nzSpan]="12">
-      <input nz-input formControlName="name" placeholder="Username" />
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired>Email</nz-form-label>
-    <nz-form-control [nzSpan]="12">
-      <input nz-input formControlName="email" placeholder="Email" type="email" />
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired>IsVerified</nz-form-label>
-    <nz-form-control [nzSpan]="12">
-      <nz-switch [(ngModel)]="switchValue1" formControlName="isVerified"></nz-switch>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired>Status</nz-form-label>
-    <nz-form-control [nzSpan]="12">
-      <nz-switch [(ngModel)]="switchValue2" formControlName="status"></nz-switch>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired>Role</nz-form-label>
-    <nz-form-control [nzSpan]="12">
-      <a nz-dropdown [nzDropdownMenu]="menu">
-        Select Role
-        <span nz-icon nzType="down"></span>
-      </a>
-      <nz-dropdown-menu #menu="nzDropdownMenu">
-        <ul nz-menu>
-          <li nz-menu-item nzSelected>User</li>
-          <li nz-menu-item>Customer</li>
-          <li nz-menu-item>Employee</li>
-          <li nz-menu-item>Admin</li>
-        </ul>
-      </nz-dropdown-menu>
-    </nz-form-control>
-  </nz-form-item>
-  <!-- <nz-form-item>
-    <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 16, offset: 8 }">
-      <button nz-button nzType="primary">Submit</button>
-    </nz-form-control>
-  </nz-form-item> -->
-</form>
+<div class="container" style="margin-top: 10%">
+  <nz-card style="background: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)">
+    <h1 style="display: flex; justify-content: start">Employee Details</h1>
+    <div style="margin-top: 2%">
+      <nz-card style="justify-content: center; background-color: #f9f9f9e0">
+        <div style="width: 30%; margin-left: 28%">
+          <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+            <nz-form-item>
+              <nz-form-label>Name</nz-form-label>
+              <nz-form-control nzErrorTip="Please enter name">
+                <input nz-input type="text" formControlName="name" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>Email</nz-form-label>
+              <nz-form-control nzErrorTip="Please enter email">
+                <input nz-input type="email" formControlName="email" placeholder="abc@gmail.com" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>Password</nz-form-label>
+              <nz-form-control nzErrorTip="Please enter password">
+                <input nz-input type="password" formControlName="password" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>Confirm Password</nz-form-label>
+              <nz-form-control nzErrorTip="Please enter confirm password">
+                <input nz-input type="password" formControlName="confirmPwd" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>Status</nz-form-label>
+              <nz-form-control>
+                <input nz-input type="checkbox" formControlName="status" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>Country Code</nz-form-label>
+              <nz-form-control nzErrorTip="Please enter country code">
+                <input nz-input type="text" formControlName="countryCode" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>Gender</nz-form-label>
+              <nz-form-control nzErrorTip="Please select gender">
+                <input nz-input type="text" formControlName="gender" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>Active</nz-form-label>
+              <nz-form-control>
+                <input nz-input type="checkbox" formControlName="active" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>IsVerified</nz-form-label>
+              <nz-form-control>
+                <input nz-input type="checkbox" formControlName="isVerified" />
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzRequired>Role</nz-form-label>
+              <nz-form-control nzErrorTip="Please enter your role">
+                <nz-select formControlName="role">
+                  <nz-option nzValue="USER" nzLabel="USER"></nz-option>
+                  <nz-option nzValue="ADMIN" nzLabel="ADMIN"></nz-option>
+                  <nz-option nzValue="CUSTOMER" nzLabel="CUSTOMER"></nz-option>
+                  <nz-option nzValue="EMPLOYEE" nzLabel="EMPLOYEE"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <button style="margin-left: 205px" nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading"
+                  >Submit</button
+                >
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+        </div>
+      </nz-card>
+    </div>
+  </nz-card>
+</div>

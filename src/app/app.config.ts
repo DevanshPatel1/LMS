@@ -1,32 +1,27 @@
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { default as ngLang } from '@angular/common/locales/en';
-import { ApplicationConfig, EnvironmentProviders, Provider } from '@angular/core';
+import { ApplicationConfig, EnvironmentProviders, Provider, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import {
-  provideRouter,
-  withComponentInputBinding,
-  withViewTransitions,
-  withInMemoryScrolling,
-  withHashLocation,
-  RouterFeatures
-} from '@angular/router';
+import { RouterFeatures, provideRouter, withComponentInputBinding, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import { defaultInterceptor, provideStartup } from '@core';
 import { provideCellWidgets } from '@delon/abc/cell';
 import { provideSTWidgets } from '@delon/abc/st';
 import { authSimpleInterceptor, provideAuth } from '@delon/auth';
 import { provideSFConfig } from '@delon/form';
-import { AlainProvideLang, provideAlain, en_US as delonLang } from '@delon/theme';
+import { provideMockConfig } from '@delon/mock';
+import { AlainProvideLang, en_US as delonLang, provideAlain } from '@delon/theme';
 import { AlainConfig } from '@delon/util/config';
 import { environment } from '@env/environment';
-import { CELL_WIDGETS, ST_WIDGETS, SF_WIDGETS } from '@shared';
+import { CELL_WIDGETS, SF_WIDGETS, ST_WIDGETS } from '@shared';
 import { enUS as dateLang } from 'date-fns/locale';
 import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
 import { en_US as zorroLang } from 'ng-zorro-antd/i18n';
 
-import { provideBindAuthRefresh } from './core/net';
-import { routes } from './routes/routes';
 import { ICONS } from '../style-icons';
 import { ICONS_AUTO } from '../style-icons-auto';
+import { provideBindAuthRefresh } from './core/net';
+import { routes } from './routes/routes';
+import * as MOCKDATA from '../../_mock';
 
 const defaultLang: AlainProvideLang = {
   abbr: 'en',
@@ -58,11 +53,13 @@ const providers: Array<Provider | EnvironmentProviders> = [
   provideAuth(),
   provideCellWidgets(...CELL_WIDGETS),
   provideSTWidgets(...ST_WIDGETS),
+  importProvidersFrom(HttpClientModule),
   provideSFConfig({
     widgets: [...SF_WIDGETS]
   }),
   provideStartup(),
-  ...(environment.providers || [])
+  ...(environment.providers || []),
+  provideMockConfig({ data: MOCKDATA })
 ];
 
 // If you use `@delon/auth` to refresh the token, additional registration `provideBindAuthRefresh` is required

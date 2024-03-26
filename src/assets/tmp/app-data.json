@@ -41,21 +41,46 @@
               "i18n": "menu.dashboard.workplace"
             }
           ]
-        },
-        {
-          "text": "shortcut",
-          "i18n": "menu.shortcut",
-          "icon": "anticon-rocket",
-          "shortcutRoot": true,
-          "children": []
-        },
-        {
-          "text": "widgets",
-          "i18n": "menu.widgets",
-          "link": "/widgets",
-          "icon": "anticon-appstore",
-          "badge": 2
         }
+        // ,{
+        //   "text": "licenses",
+        //   "i18n": "menu.licenses",
+        //   "icon": "anticon-link",
+        //   "children": [
+        //     {
+        //       "text": "generateSerial",
+        //       "link": "/licenses/",
+        //       "i18n": "menu.licenses.generateSerial"
+        //     },
+        //     {
+        //       "text": "menu.licenses.registerSerial",
+        //       "link": "/dashboard/registerSerial",
+        //       "i18n": "menu.dashboard.registerSerial"
+        //     },
+        //     {
+        //       "text": "menu.dashboard.activation",
+        //       "link": "/dashboard/activation",
+        //       "i18n": "menu.dashboard.activation"
+        //     },
+        //     {
+        //       "text": "menu.dashboard.evaluation",
+        //       "link": "/dashboard/evaluation",
+        //       "i18n": "menu.dashboard.evaluation"
+        //     }
+        //   ]
+        // },{
+        //   "text": "customer",
+        //   "i18n": "menu.customer",
+        //   "icon": "anticon-user"
+        // },{
+        //   "text": "user",
+        //   "i18n": "menu.user",
+        //   "icon": "anticon-user"
+        // },{
+        //   "text": "employee",
+        //   "i18n": "menu.employee",
+        //   "icon": "anticon-user"
+        // }
       ]
     },
     {

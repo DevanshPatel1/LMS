@@ -38,7 +38,7 @@ import { finalize } from 'rxjs';
     NzIconModule
   ]
 })
-export class UserLoginComponent implements OnDestroy {
+export class LoginComponent implements OnDestroy {
   private readonly router = inject(Router);
   private readonly settingsService = inject(SettingsService);
   private readonly socialService = inject(SocialService);
@@ -49,39 +49,18 @@ export class UserLoginComponent implements OnDestroy {
   private readonly cdr = inject(ChangeDetectorRef);
 
   form = inject(FormBuilder).nonNullable.group({
-    userName: ['', [Validators.required, Validators.pattern(/^(admin|user)$/)]],
+    userName: ['', [Validators.required, Validators.pattern(/^(admin)$/)]],
     password: ['', [Validators.required, Validators.pattern(/^(ng\-alain\.com)$/)]],
-    mobile: ['', [Validators.required, Validators.pattern(/^1\d{10}$/)]],
-    captcha: ['', [Validators.required]],
     remember: [true]
   });
   error = '';
   type = 0;
   loading = false;
-
   count = 0;
   interval$: any;
-
   switch({ index }: NzTabChangeEvent): void {
     this.type = index!;
   }
-
-  getCaptcha(): void {
-    const mobile = this.form.controls.mobile;
-    if (mobile.invalid) {
-      mobile.markAsDirty({ onlySelf: true });
-      mobile.updateValueAndValidity({ onlySelf: true });
-      return;
-    }
-    this.count = 59;
-    this.interval$ = setInterval(() => {
-      this.count -= 1;
-      if (this.count <= 0) {
-        clearInterval(this.interval$);
-      }
-    }, 1000);
-  }
-
   submit(): void {
     this.error = '';
     if (this.type === 0) {
@@ -93,19 +72,10 @@ export class UserLoginComponent implements OnDestroy {
       if (userName.invalid || password.invalid) {
         return;
       }
-    } else {
-      const { mobile, captcha } = this.form.controls;
-      mobile.markAsDirty();
-      mobile.updateValueAndValidity();
-      captcha.markAsDirty();
-      captcha.updateValueAndValidity();
-      if (mobile.invalid || captcha.invalid) {
-        return;
-      }
     }
 
     //  (https://ng-alain.com/auth/getting-started) Token
-    //  `ALLOW_ANONYMOUS`  Token 
+    //  `ALLOW_ANONYMOUS`  Token
     this.loading = true;
     this.cdr.detectChanges();
     this.http

@@ -1,0 +1,154 @@
+<div style="margin-top: 7%">
+  <nz-card style="width: auto; height: auto; background: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)">
+    <h1>License Details</h1>
+    <div class="container">
+      <nz-card style="width: auto; height: auto; background: #e6e6e626; padding: -5px -5px -5px -5px; border-radius: 10px">
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+          <nz-card
+            style="width: auto; height: auto; background: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #d9d9d9"
+          >
+            <p style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px">Product Details</p>
+            <div style="display: flex; justify-content: start; align-content: center">
+              <div>
+                <nz-form-item>
+                  <nz-form-label nzRequired>Product Spec Key</nz-form-label>
+                  <nz-form-control nzErrorTip="Please enter your product spec key">
+                    <nz-select
+                      style="width: 100%"
+                      formControlName="selectedProduct"
+                      [compareWith]="compareFn"
+                      (ngModelChange)="log($event)"
+                      nzAllowClear
+                      nzPlaceHolder="Product Spec"
+                      nzShowSearch
+                    >
+                      <nz-option *ngFor="let option of productSpecList" [nzValue]="option" [nzLabel]="option.label"></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div style="margin-left: 10%">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Product Spec Value</nz-form-label>
+                  <nz-form-control nzErrorTip="Please enter your product spec value">
+                    <nz-select
+                      style="width: 100%"
+                      formControlName="selectedProductSpec"
+                      [compareWith]="compareFn"
+                      (ngModelChange)="log($event)"
+                      nzAllowClear
+                      nzPlaceHolder="Product Spec Value"
+                      nzShowSearch
+                    >
+                      <nz-option *ngFor="let option of productList" [nzValue]="option" [nzLabel]="option.label"></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </nz-card>
+          <nz-card
+            style="width: auto; height: auto; background: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #d9d9d9"
+          >
+            <p style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px">Application Details</p>
+            <div style="display: flex; justify-content: start; align-content: center">
+              <div>
+                <nz-form-item>
+                  <nz-form-label nzRequired>Application Name</nz-form-label>
+                  <nz-form-control nzErrorTip="Please enter application name">
+                    <input nz-input formControlName="applicationName" type="text" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div style="margin-left: 10%">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Purchase Order No.</nz-form-label>
+                  <nz-form-control nzErrorTip="Please enter order number">
+                    <input nz-input formControlName="orderNumber" type="text" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div style="margin-left: 10%">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Purchase Order Date</nz-form-label>
+                  <nz-form-control nzErrorTip="Please select ordered date">
+                    <nz-date-picker formControlName="orderDate"></nz-date-picker>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </nz-card>
+          <nz-card
+            style="width: auto; height: auto; background: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #d9d9d9"
+          >
+            <p style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px">Invoice Details</p>
+            <div style="display: flex; justify-content: start; align-content: center">
+              <div>
+                <nz-form-item>
+                  <nz-form-label nzRequired>Invoice No.</nz-form-label>
+                  <nz-form-control nzErrorTip="Please enter invoice number">
+                    <input nz-input formControlName="invoiceNo" type="text" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div style="margin-left: 10%">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Invoice Date</nz-form-label>
+                  <nz-form-control nzErrorTip="Please enter invoice date">
+                    <nz-date-picker formControlName="invoiceDate"></nz-date-picker>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </nz-card>
+          <nz-card
+            style="width: auto; height: auto; background: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #d9d9d9"
+          >
+            <p style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px">License Details</p>
+            <div style="display: flex; justify-content: start; align-content: center">
+              <div>
+                <nz-form-item>
+                  <nz-form-label nzRequired>Serial Number</nz-form-label>
+                  <nz-form-control nzErrorTip="Please enter serial number">
+                    <input nz-input formControlName="serialNumber" type="text" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div style="margin-left: 10%">
+                <nz-form-item>
+                  <nz-form-label nzRequired>License Type</nz-form-label>
+                  <nz-form-control nzErrorTip="Please enter license type">
+                    <input nz-input formControlName="licenseType" type="text" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div style="margin-left: 10%">
+                <nz-form-item>
+                  <nz-form-label nzRequired>Status</nz-form-label>
+                  <nz-form-control nzErrorTip="select any status">
+                    <nz-select
+                      formControlName="selectedValue"
+                      [compareWith]="compareFn"
+                      (ngModelChange)="log($event)"
+                      nzAllowClear
+                      nzPlaceHolder="Choose"
+                    >
+                      <nz-option *ngFor="let option of optionList" [nzValue]="option" [nzLabel]="option.label"></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+          </nz-card>
+          <div>
+            <nz-form-item style="margin-left: 48%">
+              <nz-form-control [nzSpan]="12">
+                <button nz-button nzType="primary">Submit</button>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </form>
+      </nz-card>
+    </div>
+  </nz-card>
+</div>

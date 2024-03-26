@@ -1,0 +1,31 @@
+<br />
+<br />
+
+<nz-card style="height: 800px; width: 1450px; background: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)">
+  <div style="display: flex; justify-content: center; margin-top: 15px">
+    <h1 style="display: flex; justify-content: center">Evaluation</h1>
+  </div>
+  <div style="margin-top: 25px; height: 550px; width: 1400px">
+    <nz-upload nzType="drag" [nzMultiple]="true" (nzChange)="handleChange($event)">
+      <p class="ant-upload-drag-icon">
+        <span nz-icon nzType="inbox"></span>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+      <p class="ant-upload-hint">
+        Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files
+      </p>
+      <div style="display: flex; justify-content: center; margin-top: 30px; margin-bottom: 20px">
+        <p> <strong>------------ OR ------------</strong> </p>
+      </div>
+      <div style="display: flex; justify-content: center; margin-top: 20px">
+        <button nz-button style="border: #76a2dc; border-style: solid; opacity: 50%">
+          <span nz-icon nzType="upload"></span>
+          Browse File
+        </button>
+      </div>
+    </nz-upload>
+    <div style="margin-top: 20px; display: flex; justify-content: center">
+      <button nz-button>Evaluate</button>
+    </div>
+  </div>
+</nz-card>

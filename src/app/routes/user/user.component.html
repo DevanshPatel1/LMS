@@ -1,41 +1,41 @@
-<page-header />
-
-<div style="display: flex; justify-content: flex-end; padding-right: 25px; margin-bottom: 20px">
-  <nz-button-group>
-    <button nz-button style="margin-right: 10px" (click)="OnClickAddUser()">Add User</button>
-    <button nz-button (click)="OnClickGoBack()">Back</button>
-  </nz-button-group>
-</div>
-<nz-card [nzBordered]="false">
-  <nz-table #rowSelectionTable nzShowSizeChanger ngSkipHydration [nzData]="listOfData">
-    <!-- (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" -->
-    <thead>
-      <tr>
-        <th nzAlign="center">ID</th>
-        <th nzAlign="center">Name</th>
-        <th nzAlign="center">Email</th>
-        <th nzAlign="center">IsVerified</th>
-        <th nzAlign="center">Status</th>
-        <th nzAlign="center">Role</th>
-        <th nzAlign="center">Action</th>
-        <!-- <th>Edit</th>
-        <th>Remove</th> -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of rowSelectionTable.data">
-        <td nzAlign="center">{{ data.id }}</td>
-        <td nzAlign="center">{{ data.name }}</td>
-        <td nzAlign="center">{{ data.email }}</td>
-        <td nzAlign="center">{{ data.isVerified }}</td>
-        <td nzAlign="center">{{ data.status }}</td>
-        <td nzAlign="center">{{ data.role }}</td>
-        <td nzAlign="center">
-          <a (click)="(OnClickEditUser())">Edit</a>
-          <nz-divider nzType="vertical"></nz-divider>
-          <a (click)="(OnClickRemoveUser())">Remove</a>
-        </td>
-      </tr>
-    </tbody>
-  </nz-table>
-</nz-card>
+<nz-card style="height: auto">
+  <div style="display: flex; justify-content: flex-end; padding-right: 25px; margin-bottom: 20px">
+    <nz-button-group>
+      <button nz-button style="margin-right: 10px" (click)="OnClickAddUser()">Add User</button>
+      <button nz-button (click)="OnClickGoBack()">Back</button>
+    </nz-button-group>
+  </div>
+  <nz-card [nzBordered]="false">
+    <nz-table #rowSelectionTable nzShowSizeChanger ngSkipHydration [nzData]="users">
+      <!-- (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" -->
+      <thead>
+        <tr>
+          <th nzAlign="center">ID</th>
+          <th nzAlign="center">Name</th>
+          <th nzAlign="center">Email</th>
+          <th nzAlign="center">IsVerified</th>
+          <th nzAlign="center">Status</th>
+          <th nzAlign="center">Role</th>
+          <th nzAlign="center">Action</th>
+          <!-- <th>Edit</th>
+            <th>Remove</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of rowSelectionTable.data; let i = index">
+            <td nzAlign="center">{{ i+1 }}</td>
+            <td nzAlign="center">{{ data.name }}</td>
+            <td nzAlign="center">{{ data.email }}</td>
+            <td nzAlign="center">{{ data.isVerified }}</td>
+            <td nzAlign="center">{{ data.status }}</td>
+            <td nzAlign="center">{{ data.role }}</td>
+            <td nzAlign="center">
+              <a (click)="OnClickEditUser(data.id)">Edit</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a (click)="OnClickRemoveUser(data.id)">Remove</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>  
+  </nz-card>

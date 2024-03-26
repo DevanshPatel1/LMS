@@ -13,15 +13,23 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 export class DashboardComponent {
   constructor(private router: Router) {}
 
-  OnClickUser() {
-    this.router.navigateByUrl('user');
-  }
+  // OnClickUser() {
+  //   this.router.navigateByUrl('user');
+  // }
 
-  OnClickCustomer() {
-    this.router.navigateByUrl('customer');
-  }
+  // OnClickCustomer() {
+  //   this.router.navigateByUrl('customer');
+  // }
 
-  OnClickEmployee() {
-    this.router.navigateByUrl('employee');
-  }
+  // OnClickEmployee() {
+  //   this.router.navigateByUrl('employee');
+  // }
+
+  // OnClickLicenses() {
+  //   this.router.navigateByUrl('licenses');
+  // }
+
+  // OnClickActivation() {
+  //   this.router.navigateByUrl('activation');
+  // }
 }

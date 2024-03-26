@@ -24,10 +24,6 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
           <i nz-icon nzType="setting" class="mr-sm"></i>
           Account Settings
         </div>
-        <div nz-menu-item routerLink="/exception/trigger">
-          <i nz-icon nzType="close-circle" class="mr-sm"></i>
-          Trigger Error
-        </div>
         <li nz-menu-divider></li>
         <div nz-menu-item (click)="logout()">
           <i nz-icon nzType="logout" class="mr-sm"></i>

@@ -1,0 +1,24 @@
+<div style="margin-top: 7%">
+  <nz-card style="justify-content: center; background-color: white">
+    <h1> Serial Generation </h1>
+    <div style="width: 50%; margin-left: 28%">
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="onClick()">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>numberOf</nz-form-label>
+          <nz-form-control [nzSpan]="12">
+            <input nz-input formControlName="numberOf" placeholder="10" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>series</nz-form-label>
+          <nz-form-control [nzSpan]="12">
+            <input nz-input formControlName="series" />
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+      <div style="display: flex; justify-content: center; align-content: center">
+        <button nz-button nzType="primary" (click)="onClick()">Serial Key Generator </button>
+      </div>
+    </div>
+  </nz-card>
+</div>
