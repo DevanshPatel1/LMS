@@ -9,17 +9,16 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 })
 export class CustomerService {
   private apiUrl = 'http://localhost:3000/';
-  public isVisible!: boolean;
+  public isVisible!: false;
   public isEditMode!: boolean;
   public isConfirmLoading!: boolean;
   public isOkLoading!: boolean;
   public customers: ICustomer[] = [];
   public idToken!: string;
+  idSubscription!: Subscription 
   constructor(
-    private http: HttpClient,
-    private modalService: NzModalService
+    private http: HttpClient
   ) {}
-
   createCustomer(body: any): Observable<any> {
     return this.http.post(`${this.apiUrl}customer`, body);
   }
@@ -47,19 +46,5 @@ export class CustomerService {
     setTimeout(() => {
       this.getAllCustomer();
     }, 1000);
-  }
-
-  openModal(title: string, content: string): void {
-    this.modalService.info({
-      nzTitle: title,
-      nzContent: content,
-      nzOnOk: () => {
-        this.isOkLoading = true;
-        setTimeout(() => {
-          this.isVisible = false;
-          this.isOkLoading = false;
-        }, 3000);
-      }
-    });
   }
 }

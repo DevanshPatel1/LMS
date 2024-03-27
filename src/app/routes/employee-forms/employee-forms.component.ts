@@ -13,7 +13,6 @@ import { NzOptionComponent, NzSelectComponent } from 'ng-zorro-antd/select';
 import { DepartmentService } from '../../services/employee/department.service';
 import { Subscription } from 'rxjs';
 import { IDepartment, MyObject } from '../../interfaces/department/department.interface';
-import { error } from 'console';
 import { NzModalService } from 'ng-zorro-antd/modal';
 @Component({
   selector: 'app-employee-forms',
@@ -108,17 +107,28 @@ export class EmployeeFormsComponent implements OnInit, OnDestroy {
       this.router.navigate(['employeeForms']);
     }
     this.isConfirmLoading = true;
-    if (this.isEditMode) {
-      this.employeeService.openModal('Editing Employee Details', 'Employee Details is Edited');
-    } else {
-      this.employeeService.openModal('Adding Employee', 'New Employee is added');
-    }
     this.submitForm();
-    setTimeout(() => {
-      this.isConfirmLoading = false;
-      this.employeeService.getAllEmployee();
-      this.router.navigate(['employee']);
-    }, 1000);
+    if (this.isEditMode) {
+      this.modalService.info({
+        nzTitle:'Editing Employee Details', 
+        nzContent:'Employee Details is Edited',
+        nzOnOk: () =>{
+          this.employeeService.getAllEmployee();
+          this.router.navigate(['employee']);
+          this.isConfirmLoading = false;
+        }
+      });
+    } else {
+      this.modalService.info({
+        nzTitle: 'Adding Employee', 
+        nzContent: 'New Employee is added',
+        nzOnOk: () =>{
+          this.employeeService.getAllEmployee();
+          this.router.navigate(['employee']);
+          this.isConfirmLoading = false;
+        }
+      });
+    }
   }
   resetForm(): void {
     this.validateForm.reset();

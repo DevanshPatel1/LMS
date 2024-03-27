@@ -1,20 +1,17 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NzAvatarModule } from 'ng-zorro-antd/avatar';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { UserFormsComponent } from '../user-forms/user-forms.component';
-import { IUser } from '../../services/user/user.interface';
-import { UserService } from '../../services/user/user.service';
-import { Subscription } from 'rxjs';
+import { CommonModule } from "@angular/common";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Router } from "@angular/router";
+import { NzButtonModule } from "ng-zorro-antd/button";
+import { NzCardModule } from "ng-zorro-antd/card";
+import { NzDividerModule } from "ng-zorro-antd/divider";
+import { NzIconModule } from "ng-zorro-antd/icon";
+import { NzLayoutModule } from "ng-zorro-antd/layout";
+import { NzModalModule, NzModalService } from "ng-zorro-antd/modal";
+import { NzTableModule } from "ng-zorro-antd/table";
+import { Subscription } from "rxjs";
+import { IUser } from "src/app/services/user/user.interface";
+import { UserService } from "src/app/services/user/user.service";
+
 @Component({
   selector: 'app-user',
   standalone: true,
@@ -22,10 +19,8 @@ import { Subscription } from 'rxjs';
     CommonModule,
     NzTableModule,
     NzCardModule,
-    NzAvatarModule,
     NzButtonModule,
     NzModalModule,
-    NzDropDownModule,
     NzIconModule,
     NzLayoutModule,
     NzDividerModule
@@ -50,7 +45,7 @@ export class UserComponent implements OnInit, OnDestroy {
   OnClickAddUser(): void {
     this.router.navigate(['userForms']);
     this.userService.isEditMode = false;
-    console.log(this.userService.isEditMode);
+    // console.log(this.userService.isEditMode);
   }
   //Though Im getting id form the DB but to pass it to submit function Im storing it in separate variable.
   OnClickEditUser(id: string): void {
@@ -68,8 +63,8 @@ export class UserComponent implements OnInit, OnDestroy {
   }
   OnClickGoBack() {
     this.modalService.confirm({
-      nzTitle: 'GoBack',
-      nzContent: 'Users wants to go back',
+      nzTitle: 'Go Back!!!',
+      nzContent: 'Do you want to go back',
       nzOnOk: () => {
         this.userService.isOkLoading = true;
         if (this.userService.isOkLoading == true) {
@@ -77,7 +72,6 @@ export class UserComponent implements OnInit, OnDestroy {
             this.userService.isVisible = false;
             this.userService.isOkLoading = false;
           }, 3000);
-          this.userService.openModal('Go Back', 'Do you want to go back!!');
         }
         this.router.navigateByUrl('dashboard');
       },
@@ -85,6 +79,7 @@ export class UserComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.userService.isVisible = false;
         }, 3000);
+        this.router.navigate(['user']);
       }
     });
   }

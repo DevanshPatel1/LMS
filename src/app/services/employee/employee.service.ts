@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { IEmployee } from '../../interfaces/employee/employee.interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { NzModalService } from 'ng-zorro-antd/modal';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,8 +14,7 @@ export class EmployeeService {
   public employees: IEmployee[] = [];
   public idToken!: string;
   constructor(
-    private http: HttpClient,
-    private modalService: NzModalService
+    private http: HttpClient
   ) {}
   createEmployee(body: any): Observable<any> {
     return this.http.post(`${this.apiUrl}employee`, body);
@@ -45,18 +43,5 @@ export class EmployeeService {
     setTimeout(() => {
       this.getAllEmployee();
     }, 1000);
-  }
-  openModal(title: string, content: string): void {
-    this.modalService.info({
-      nzTitle: title,
-      nzContent: content,
-      nzOnOk: () => {
-        this.isOkLoading = true;
-        setTimeout(() => {
-          this.isVisible = false;
-          this.isOkLoading = false;
-        }, 3000);
-      }
-    });
   }
 }

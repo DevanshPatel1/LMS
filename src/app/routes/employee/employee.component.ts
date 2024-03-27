@@ -75,8 +75,8 @@ export class EmployeeComponent implements OnInit, OnDestroy {
   }
   OnClickGoBack() {
     this.modalService.confirm({
-      nzTitle: 'GoBack',
-      nzContent: 'Employee wants to go back',
+      nzTitle: 'Go Back !!!',
+      nzContent: 'Do you want to go back',
       nzOnOk: () => {
         this.employeeService.isOkLoading = true;
         if (this.employeeService.isOkLoading == true) {
@@ -84,7 +84,6 @@ export class EmployeeComponent implements OnInit, OnDestroy {
             this.employeeService.isVisible = false;
             this.employeeService.isOkLoading = false;
           }, 3000);
-          this.employeeService.openModal('Go Back', 'Do you want to go back!!');
         }
         this.router.navigateByUrl('dashboard');
       },
@@ -92,6 +91,7 @@ export class EmployeeComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.employeeService.isVisible = false;
         }, 3000);
+        this.router.navigate(['employee']);
       }
     });
   }

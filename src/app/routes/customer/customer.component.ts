@@ -1,24 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PageHeaderModule } from '@delon/abc/page-header';
-import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { ICustomer } from '../../interfaces/customer/customer.interface';
+import { NzTableModule } from 'ng-zorro-antd/table';
 import { Subscription } from 'rxjs';
-import { CustomerService } from '../../services/customer/customer.service';
+import { ICustomer } from 'src/app/interfaces/customer/customer.interface';
+import { CustomerService } from 'src/app/services/customer/customer.service';
 @Component({
   selector: 'app-customer',
   standalone: true,
@@ -26,19 +20,13 @@ import { CustomerService } from '../../services/customer/customer.service';
     CommonModule,
     NzTableModule,
     NzCardModule,
-    NzAvatarModule,
     NzButtonModule,
-    NzModalModule,
-    NzDropDownModule,
     NzIconModule,
     NzLayoutModule,
     NzDividerModule,
-    PageHeaderModule,
-    NzFormModule,
     NzSelectModule,
     ReactiveFormsModule,
-    FormsModule,
-    NzInputModule
+    FormsModule
   ],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
@@ -60,7 +48,7 @@ export class CustomerComponent implements OnInit, OnDestroy {
   OnClickAddCustomer(): void {
     this.router.navigate(['customerForms']);
     this.customerService.isEditMode = false;
-    console.log(this.customerService.isEditMode);
+    // console.log(this.customerService.isEditMode);
   }
   //Though Im getting id form the DB but to pass it to submit function Im storing it in separate variable.
   OnClickEditCustomer(id: string): void {
@@ -78,8 +66,8 @@ export class CustomerComponent implements OnInit, OnDestroy {
   }
   OnClickGoBack() {
     this.modalService.confirm({
-      nzTitle: 'GoBack',
-      nzContent: 'Customer wants to go back',
+      nzTitle: 'Go Back !!!',
+      nzContent: 'Do want to go back?',
       nzOnOk: () => {
         this.customerService.isOkLoading = true;
         if (this.customerService.isOkLoading == true) {
@@ -87,7 +75,6 @@ export class CustomerComponent implements OnInit, OnDestroy {
             this.customerService.isVisible = false;
             this.customerService.isOkLoading = false;
           }, 3000);
-          this.customerService.openModal('Go Back', 'Do you want to go back!!');
         }
         this.router.navigateByUrl('dashboard');
       },
@@ -95,6 +82,7 @@ export class CustomerComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.customerService.isVisible = false;
         }, 3000);
+        this.router.navigate(['customer']);
       }
     });
   }

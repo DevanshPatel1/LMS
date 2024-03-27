@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IUser } from './user.interface'; // import your IUser interface
 import { HttpClient } from '@angular/common/http';
-import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,8 +15,7 @@ export class UserService {
   public users: IUser[] = [];
   public idToken!: string;
   constructor(
-    private http: HttpClient,
-    private modalService: NzModalService
+    private http: HttpClient
   ) {}
 
   createUser(body: any): Observable<any> {
@@ -47,20 +45,6 @@ export class UserService {
     setTimeout(() => {
       this.getAllUser();
     }, 1000);
-  }
-
-  openModal(title: string, content: string): void {
-    this.modalService.info({
-      nzTitle: title,
-      nzContent: content,
-      nzOnOk: () => {
-        this.isOkLoading = true;
-        setTimeout(() => {
-          this.isVisible = false;
-          this.isOkLoading = false;
-        }, 3000);
-      }
-    });
   }
 }
 

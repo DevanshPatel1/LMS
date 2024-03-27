@@ -1,21 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PageHeaderModule } from '@delon/abc/page-header';
-import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { CustomerService } from 'src/app/services/customer/customer.service';
 import { Option } from '../../interfaces/customer/customer.interface';
-import { CustomerService } from '../../services/customer/customer.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-customer-forms',
@@ -24,14 +21,10 @@ import { Router } from '@angular/router';
     CommonModule,
     NzTableModule,
     NzCardModule,
-    NzAvatarModule,
     NzButtonModule,
-    NzModalModule,
-    NzDropDownModule,
     NzIconModule,
     NzLayoutModule,
     NzDividerModule,
-    PageHeaderModule,
     NzFormModule,
     NzSelectModule,
     ReactiveFormsModule,
@@ -53,6 +46,7 @@ export class CustomerFormsComponent implements OnInit {
     private modalService: NzModalService
   ) {
     this.validateForm = this.fb.group({
+      id: [],
       name: ['', [Validators.required]],
       address: ['', [Validators.required]],
       city: ['', [Validators.required]],
@@ -64,7 +58,6 @@ export class CustomerFormsComponent implements OnInit {
   isConfirmLoading = this.customerService.isConfirmLoading;
   isEditMode = this.customerService.isEditMode;
   idToken = this.customerService.idToken;
-
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('Form is called:', this.validateForm);
@@ -79,7 +72,7 @@ export class CustomerFormsComponent implements OnInit {
       };
       if (this.isEditMode) {
         if (this.idToken) {
-          console.log(this.idToken, 'tttttttttttttttttttttt');
+          console.log(this.idToken);
         }
         this.customerService.updateCustomer(this.idToken, customerData).subscribe({
           next: response => {
@@ -109,24 +102,33 @@ export class CustomerFormsComponent implements OnInit {
     }
   }
 
-  // TODO: If form is not filled stay at same page else popup
-
   handleOk(): void {
     if (!this.validateForm.valid) {
       this.router.navigate(['customerForms']);
     }
     this.isConfirmLoading = true;
-    if (this.isEditMode) {
-      this.customerService.openModal('Editing Customer Details', 'Customer Details is Edited');
-    } else {
-      this.customerService.openModal('Adding Customer', 'New Customer is added');
-    }
     this.submitForm();
-    setTimeout(() => {
-      this.isConfirmLoading = false;
-      this.customerService.getAllCustomer();
-      this.router.navigate(['customer']);
-    }, 1000);
+    if (this.isEditMode) {
+      this.modalService.info({
+        nzTitle: 'Editing Customer Details',
+        nzContent: 'Customer Details is Edited',
+        nzOnOk: () => {
+          this.customerService.getAllCustomer();
+          this.router.navigate(['customer']);
+          this.isConfirmLoading = false;
+        }
+      });
+    } else {
+      this.modalService.info({
+        nzTitle: 'Adding Customer',
+        nzContent: 'New Customer is added',
+        nzOnOk: () => {
+          this.customerService.getAllCustomer();
+          this.router.navigate(['customer']);
+          this.isConfirmLoading = false;
+        }
+      });
+    }
   }
   resetForm(): void {
     this.validateForm.reset();

@@ -5,13 +5,13 @@
       <form nz-form [formGroup]="validateForm" (ngSubmit)="onClick()">
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzRequired>numberOf</nz-form-label>
-          <nz-form-control [nzSpan]="12">
+          <nz-form-control [nzSpan]="12" nzErrorTip="Please enter number of serial key you want generate">
             <input nz-input formControlName="numberOf" placeholder="10" />
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
           <nz-form-label [nzSpan]="7" nzRequired>series</nz-form-label>
-          <nz-form-control [nzSpan]="12">
+          <nz-form-control [nzSpan]="12" nzErrorTip="Please enter series of serial key">
             <input nz-input formControlName="series" />
           </nz-form-control>
         </nz-form-item>
